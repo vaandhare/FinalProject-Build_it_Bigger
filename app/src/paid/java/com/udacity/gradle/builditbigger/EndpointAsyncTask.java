@@ -28,8 +28,7 @@ public class EndpointAsyncTask extends AsyncTask<com.udacity.gradle.builditbigge
         if (myApiService == null) { // Only do this once
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
                             .setRootUrl("https://10.0.2.2/_ah/api/")
-                            .setGoogleClientRequestInitializer(abstractGoogleClientRequest ->
-                                    abstractGoogleClientRequest.setDisableGZipContent(true));
+                            .setGoogleClientRequestInitializer(abstractGoogleClientRequest -> abstractGoogleClientRequest.setDisableGZipContent(true));
             myApiService = builder.build();
         }
 
@@ -43,7 +42,7 @@ public class EndpointAsyncTask extends AsyncTask<com.udacity.gradle.builditbigge
     @Override
     protected void onPostExecute(String result) {
         if (result == null) {
-            Toast.makeText(context, "something wrong with the server", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Server Error", Toast.LENGTH_SHORT).show();
             return;
         }
         Intent intent = new Intent(context, JokeDisplayActivity.class);
